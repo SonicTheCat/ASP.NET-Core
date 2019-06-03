@@ -1,0 +1,45 @@
+﻿@using CHUSHKA.Models.Enums
+@model CHUSHKA.WEB.ViewModels.ProductViewModel
+@{
+    ViewData["Title"] = "Admin Edit Page";
+    var enumValues = Enum.GetValues(typeof(ProductType));
+}
+
+<h1 class="text-center text-black mt-3">Create Product</h1>
+<hr class="border border-dark" />
+
+<form asp-controller="Products" asp-action="Edit" method="post" class="mx-auto w-50 mt-3">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" aria-describedby="name" placeholder="Product Name...">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" placeholder="Price...">
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <h4 class="text-center text-dark">Product Type</h4>
+    <hr class="border border-dark w-50" />
+    <div class="d-flex justify-content-between ml-3 mr-3">
+        @foreach (var item in enumValues)
+        {
+            <div class="form-check form-check-intline">
+                <label>
+                    <input asp-for="Type" type="radio" value="@item" />
+                    @item
+                </label>
+            </div>
+        }
+    </div>
+    <hr class="border border-dark w-50" />
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary bg-danger mb-4 mr-5">Edit</button>
+        <a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary bg-danger mb-4">Cancel</a>
+    </div>
+</form>

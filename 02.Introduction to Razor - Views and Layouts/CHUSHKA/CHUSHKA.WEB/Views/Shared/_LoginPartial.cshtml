@@ -1,0 +1,15 @@
+@using Microsoft.AspNetCore.Identity
+@using  CHUSHKA.Models
+@inject SignInManager<ChushkaUser> SignInManager
+@inject UserManager<ChushkaUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a class="nav-item nav-link text-white" asp-controller="Account" asp-action="Logout">Logout</a>
+}
+else
+{
+    <a class="nav-item nav-link text-white" asp-controller="Account" asp-action="Login">Login</a>
+    <a class="nav-item nav-link text-white" asp-controller="Account" asp-action="Register">Register</a>
+}

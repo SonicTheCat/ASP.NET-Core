@@ -1,0 +1,43 @@
+﻿@using CHUSHKA.WEB.Common
+@model IEnumerable<CHUSHKA.WEB.ViewModels.ProductViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+    var message = string.Empty;
+}
+
+@if (this.User.Identity.IsAuthenticated)
+{
+    @if (this.User.IsInRole(GlobalConstants.AdministratorRole))
+    {
+        message = "Enjoy your work today!";
+    }
+    else
+    {
+        message = "Feel free to view and order anything you like...";
+    }
+
+    <div class="text-center text-dark mt-2">
+        <h2><strong>Greetings, @this.User.Identity.Name!</strong></h2>
+        <h4>@message</h4>
+        <hr class="border border-dark" />
+    </div>
+
+    <partial name="~/Views/Shared/_ProductsPartial.cshtml" />
+}
+else
+{
+    <div class="jumbotron bg-danger text-white mt-3">
+        <h2>Welcome to Chushka Universal Web Shop</h2>
+        <hr class="bg-white" />
+        <h5><a class="text-secondary" asp-area="" asp-controller="Account" asp-action="Login">Login</a> if you have an account.</h5>
+        <h5><a class="text-secondary" asp-area="" asp-controller="Account" asp-action="Register">Register</a> If you dont.</h5>
+    </div>
+}
+
+@*@if (this.User.IsInRole(GlobalConstants.AdministratorRole))
+    {
+        @section AdminPanel
+        {
+            <h1>Hello Admin</h1>
+        }
+    }*@

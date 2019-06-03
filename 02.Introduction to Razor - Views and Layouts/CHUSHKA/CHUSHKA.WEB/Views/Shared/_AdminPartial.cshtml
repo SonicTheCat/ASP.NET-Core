@@ -1,0 +1,8 @@
+﻿@using CHUSHKA.WEB.Common
+
+@if (this.User.IsInRole(GlobalConstants.AdministratorRole))
+{
+    <a class="nav-item nav-link text-white" asp-controller="Products" asp-action="Create">Create Product</a>
+    <a class="nav-item nav-link text-white" asp-controller="Orders" asp-action="All">All Orders</a>
+    @*<a class="nav-item nav-link text-white" asp-controller="Orders" asp-action="All">All Orders</a>*@
+}

@@ -1,0 +1,34 @@
+﻿@using CHUSHKA.WEB.ViewModels
+@model List<OrderViewModel>
+@{
+    ViewData["Title"] = "Admin All Orders Page";   
+}
+
+<h1 class="text-center">All Orders</h1>
+<hr class="border border-dark" />
+
+<div class="container-fluid w-75">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Order ID</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Product</th>
+                <th scope="col">Ordered On</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <th scope="row">@(i + 1)</th>
+                    <td>@Model[i].Id</td>
+                    <td>@Model[i].Client.UserName</td>
+                    <td>@Model[i].Product.Name</td>
+                    <td>@Model[i].OrderedOn.ToString("HH:mm dd/MM/yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
